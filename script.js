@@ -85,7 +85,24 @@ function playRound() {
     let p = document.createElement("p");
     p.textContent = message;
     results.appendChild(p);
-
+    if (message == "You lose! Paper beats rock.") {
+        p.classList.add("lose");
+    }
+    else if (message == "You lose! Scissors beats paper.") {
+        p.classList.add("lose");
+    }
+    else if (message == "You lose! Rock beats scissors.") {
+        p.classList.add("lose");
+    }
+    else if (message == "Draw! You both chose rock.") {
+        p.classList.add("draw");
+    }
+    else if (message == "Draw! You both chose paper.") {
+        p.classList.add("draw");
+    }
+    else if (message == "Draw! You both chose scissors.") {
+        p.classList.add("draw");
+    }
     userScoreKeeper.textContent = userScore;
     pcScoreKeeper.textContent = pcScore;
 
