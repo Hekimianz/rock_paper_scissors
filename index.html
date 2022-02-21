@@ -8,12 +8,15 @@
     <title>Rock Paper Scissors</title>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Serif&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <h1 class="title">Rock Paper Scissors</h1>
     <div class="container">
-        <button class="restart">Restart</button>
+        <button class="restart"><img src="./Images/Restart.png" alt="restart"></button>
         <div class="scoreKeeper">
             <div class="userScoreKeeper">
                 <h2>User's Score:</h2>
@@ -24,10 +27,11 @@
                 <p class="pcScore"></p>
             </div>
         </div>
+
         <div class="btns">
-            <button class="btn">Rock</button>
-            <button class="btn">Paper</button>
-            <button class="btn">Scissors</button>
+            <button class="btn"><img src="./Images/Rock.png" alt="rock"></button>
+            <button class="btn"><img src="./Images/Paper.png" alt="paper"></button>
+            <button class="btn"><img id="scissors" src="./Images/Scissors.png" alt="scissors"></button>
         </div>
 
         <div class="resultsDiv">
