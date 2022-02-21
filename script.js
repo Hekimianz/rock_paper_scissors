@@ -19,21 +19,15 @@ function computersPlay() {
 
     }
     else {
-        console.log("Something has gone wrong, please refresh and try again.");
     }
-    console.log("Computer: " + computersChoice);
+
     return computersChoice;
 }
 
 // Take players selection.
 let userSelec = "";
 let userSelecLower = "";
-function userSelection() {
-    userSelec = prompt("Choose wisely: Rock, Paper or Scissors?");
-    userSelecLower = userSelec.toLowerCase();
-    console.log("user: " + userSelecLower);
-    return userSelecLower;
-}
+
 
 
 // Compare computers play and players selection and throw out a message declaring win or lose condititon.
@@ -46,11 +40,11 @@ function determineWin(computersChoice, userSelec) {
         pcScore++;
     }
     else if (userSelec === "rock" && computersChoice === "scissors") {
-        message = "You win! Rock beats scissors."
+        message = "You win! Rock beats scissors.";
         userScore++;
     }
     else if (userSelec === "rock" && computersChoice === "rock") {
-        message = "Draw! You both chose rock."
+        message = "Draw! You both chose rock.";
     }
     else if (userSelec === "paper" && computersChoice === "rock") {
         message = "You win! Paper beats rock.";
@@ -77,42 +71,76 @@ function determineWin(computersChoice, userSelec) {
     else {
         message = "Something has gone wrong, please refresh and try again";
     }
-    console.log(message);
-    console.log("************************************************************************")
     return message;
 }
+
+const results = document.querySelector(".resultsDiv");
+const userScoreKeeper = document.querySelector(".userScore")
+const pcScoreKeeper = document.querySelector(".pcScore")
+userScoreKeeper.textContent = userScore;
+pcScoreKeeper.textContent = pcScore;
 function playRound() {
-    userSelection();
     computersPlay();
-    determineWin(computersChoice, userSelecLower);
+    determineWin(computersChoice, userSelec);
+    let p = document.createElement("p");
+    p.textContent = message;
+    results.appendChild(p);
+
+    userScoreKeeper.textContent = userScore;
+    pcScoreKeeper.textContent = pcScore;
+
+
+    if (userScore === 5) {
+        alert("You Win! Great job!");
+        pcScore = 0;
+        userScore = 0;
+        userScoreKeeper.textContent = userScore;
+        pcScoreKeeper.textContent = pcScore;
+        while (results.firstChild) {
+            results.removeChild(results.lastChild);
+        }
+    }
+    else if (pcScore === 5) {
+        alert("Aww! You lose! Better luck next time!")
+        pcScore = 0;
+        userScore = 0;
+        userScoreKeeper.textContent = userScore;
+        pcScoreKeeper.textContent = pcScore;
+        while (results.firstChild) {
+            results.removeChild(results.lastChild);
+        }
+    }
+}
+
+const restart = document.querySelector(".restart");
+restart.addEventListener("click", function () {
+    pcScore = 0;
+    userScore = 0;
+    userScoreKeeper.textContent = userScore;
+    pcScoreKeeper.textContent = pcScore;
+    while (results.firstChild) {
+        results.removeChild(results.lastChild);
+    }
+})
+
+const buttons = document.querySelectorAll(".btn");
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function () {
+        if (i == 0) {
+            userSelec = "rock";
+            playRound();
+        }
+        else if (i == 1) {
+            userSelec = "paper";
+            playRound();
+        }
+        else if (i == 2) {
+            userSelec = "scissors";
+            playRound();
+        }
+    })
 }
 
 
 
-// Create a game that plays 5 rounds of previous steps.
-function game() {
-    for (let i = 0; i < 5; i++) {
-        playRound();
-    }
-    if (userScore > pcScore) {
-        console.log("You win!");
-        console.log("Your Score: " + userScore);
-        console.log("Computer's Score: " + pcScore);
-    }
-    else if (userScore < pcScore) {
-        console.log("You lose!")
-        console.log("Your Score: " + userScore);
-        console.log("Computer's Score: " + pcScore);
-    }
-    else if (pcScore === userScore) {
-        console.log("Draw!");
-        console.log("Your Score: " + userScore);
-        console.log("Computer's Score: " + pcScore);
-    }
-    else {
-        console.log("Something has gone terribly wrong. please refresh and try again.");
-    }
 
-}
-
-game();
